@@ -1,13 +1,45 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <title>To Do List</title>
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <aside class="aside aside--left">
+        <h3 class="aside--left__title">To Do List App</h3>
+        <h4 class="aside--left__title-list">My list</h4>
+        <div class="list">
+          <div class="list__item">
+            <button class="btn list__btn">
+              <div class="list__txt">Life</div>
+              <span class="list__del">x</span>
+            </button>
+          </div>
+          <div class="list__item">
+            <button class="btn list__btn">
+              <div class="list__txt">Work</div>
+              <span class="list__del">x</span>
+            </button>
+          </div>
+        </div>
+        <div class="add-list">
+          <button class="btn add-list__btn">+ Add List</button>
+        </div>
+      </aside>
+      <main class="main"></main>
+      <aside class="aside aside--rigth"></aside>
+    </div>
+  </div>
+
+
+  <script type="module" src="/main.js"></script>
+</body>
+
 </html>
