@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Abel&family=DM+Sans&family=Space+Mono:ital@1&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&family=Victor+Mono:wght@100&display=swap');
 
 :root {
-    --gb-color: #262526;
+    --gb-color: #252525;
     --bg-color-two: #141214;
     --bg-color-three: #45434e;
     --color-btn: #F7C667;
@@ -163,7 +163,101 @@ h2 {
 
 /*estilos para el contenedor de las listas y las tasks*/
 
-.list{
+.task-main {
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.add-task {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.add-task__inp {
+    border: none;
+    background: none;
+    outline: none;
+    border: 1px solid rgb(161, 161, 161);
+    width: 100%;
+    height: 50px;
+    border-radius: var(--border);
+    padding: 0 1rem;
+    color: white;
+    font-size: 1rem;
+}
+
+.add-task__inp::placeholder {
+    color: rgb(192, 192, 192);
+}
+
+.add-task__inp:focus {
+    border: 1px solid rgb(255, 255, 255);
+}
+
+.list {
     display: flex;
     flex-direction: column;
+    gap: .5rem;
+}
+
+.task {
+    width: 100%;
+    /* border: 1px solid; */
+    background-color: var(--gb-color);
+    height: 40px;
+    border-radius: var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    gap: .5rem;
+    font-size: 1rem;
+}
+
+.task:hover {
+    background-color: var(--bg-color-three);
+}
+
+.task__check {
+    appearance: none;
+    border: none;
+    background: none;
+    border-radius: 50%;
+    border: 1px solid white;
+    height: 15px;
+    width: 15px;
+}
+
+.task__check:checked {
+    background-color: #F7C667;
+}
+
+
+.task__text {
+    flex: 1;
+}
+
+.task__btn {
+    height: 50%;
+    border: none;
+    outline: none;
+    background: none;
+    color: white;
+    cursor: pointer;
+}
+
+.task__btn--adit {
+    color: #9881ff;
+}
+
+.task__btn--delete {
+    color: #ff7e7ebe;
+}
+
+.task__btn--adit:hover {
+    color: #897dc0;
+}
+
+.task__btn--delete:hover {
+    color: #be7777be;
 }
