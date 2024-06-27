@@ -1,62 +1,65 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>To Do List</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css">
-  <title>To Do List</title>
-</head>
-
-<body>
-  <div id="app">
-    <div class="container">
-      <aside class="aside aside--left">
-        <h1 class="aside--left__title">To Do List</h1>
-        <h4 class="aside--left__title-list">My list</h4>
-        <div class="list">
-          <div class="list__item">
-            <button class="btn list__btn">
-              <div class="list__txt">Life</div>
-              <span class="list__del">x</span>
-            </button>
-          </div>
-        </div>
-        <div class="add-list">
-          <button class="btn add-list__btn">+ Add List</button>
-        </div>
-      </aside>
-      <main class="main">
-        <header class="main__header header">
-          <span class="header__date">Jun 04</span>
-          <section class="header__title title">
-            <span class="title__fir">Good Moorning</span>
-            <span class="title__sec">What do you need to do today?</span>
-          </section>
-        </header>
-        <section class="task-main">
-          <section class="add-task">
-            <input type="text" name="task" id="task" class="add-task__inp" placeholder="Add Task">
-          </section>
-          <section class="tasks">
-            <div class="task">
-              <input type="checkbox" name="check" id="check" class="task__check">
-              <span class="task__text">tarea</span>
-              <button class="task__btn task__btn--adit">
-                editar
-              </button>
-              <button class="task__btn task__btn--delete">
-                borrar
+  <body>
+    <div id="app">
+      <div class="container">
+        <aside class="aside aside--left">
+          <h1 class="aside--left__title">To Do List</h1>
+          <h4 class="aside--left__title-list">My list</h4>
+          <div class="list">
+            <div class="list__item">
+              <button class="btn list__btn">
+                <div class="list__txt">Life</div>
+                <span class="list__del">x</span>
               </button>
             </div>
+          </div>
+          <div class="add-list">
+            <button class="btn add-list__btn">+ Add List</button>
+          </div>
+        </aside>
+        <main class="main">
+          <header class="main__header header">
+            <span class="header__date"></span>
+            <section class="header__title title">
+              <span class="title__fir">Good Moorning</span>
+              <span class="title__sec">What do you need to do today?</span>
+            </section>
+          </header>
+          <section class="task-main">
+            <section class="add-task">
+              <input
+                type="text"
+                name="task"
+                id="task"
+                class="add-task__inp"
+                placeholder="Add Task"
+              />
+            </section>
+            <section class="tasks">
+              
           </section>
-        </section>
-      </main>
-      <aside class="aside aside--rigth"></aside>
+        </main>
+        <aside class="aside aside--rigth"></aside>
+      </div>
     </div>
-  </div>
-  <script type="module" src="/main.js"></script>
-</body>
+    <script type="module" src="/main.js"></script>
 
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>
