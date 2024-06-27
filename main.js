@@ -17,6 +17,8 @@ let listMonth = [
 
 let lastID = 0;
 
+let listArray = [];
+
 let tasksArray = [];
 
 function dateNameForm() {
@@ -31,11 +33,6 @@ function dateNameForm() {
 }
 
 dateNameForm();
-
-const _task = document.querySelector(".task");
-if (_task) {
-  _task.addEventListener("click", (e) => {});
-}
 
 const _taskAdd = document.querySelector(".add-task__inp");
 const _tasksContainer = document.querySelector(".tasks");
@@ -60,7 +57,6 @@ _taskAdd.addEventListener("keyup", (e) => {
   }
 });
 
-
 _tasksContainer.addEventListener("click", (e) => {
   let taskClick = e.target;
   let taskTarget = taskClick.closest(".task");
@@ -70,20 +66,32 @@ _tasksContainer.addEventListener("click", (e) => {
 
   if (taskClick.closest(".task__btn--delete")) {
     let idTask = +taskTarget.dataset.id;
-    console.log(idTask);
     let newArray = tasksArray.filter((taskValue) => taskValue.id !== idTask);
-    console.log(newArray);
     tasksArray = [...newArray];
     renderTask();
     return;
   }
 
   if (taskClick.closest(".task__btn--edit")) {
+
     return;
   }
 
   if (taskTarget) {
-    taskTarget.classList.toggle("active");
+    let _check_inp = taskTarget.querySelector(".task__check");
+    let check = _check_inp.checked;
+    _check_inp.checked = !check;
+    let checkId = +taskTarget.dataset.id;
+    let newTasksArray = tasksArray.map((task) => {
+      if (task.id === checkId) {
+        return {
+          ...task,
+          check: !check,
+        };
+      }
+      return task;
+    });
+    tasksArray = [...newTasksArray];
   }
 });
 
@@ -95,25 +103,26 @@ function renderTask() {
   let fragment = document.createDocumentFragment();
   tasksArray.forEach((task) => {
     let taskItem = `
-        <input
+      <input
         type="checkbox"
         name="check"
         id="check"
         class="task__check"
-        />
-        <span class="task__text">${task.text}</span>
-        <button class="task__btn task__btn--edit">
-            <ion-icon name="create-outline"></ion-icon>
-        </button>
-        <button class="task__btn task__btn--delete">
-            <ion-icon name="trash-outline"></ion-icon>
-        </button>
+        ${task.check ? "checked" : ""}
+      />
+      <span class="task__text">${task.text}</span>
+      <button class="task__btn task__btn--edit">
+          <ion-icon name="create-outline"></ion-icon>
+      </button>
+      <button class="task__btn task__btn--delete">
+          <ion-icon name="trash-outline"></ion-icon>
+      </button>
     `;
     let div = document.createElement("div");
     div.classList.add("task", "animate");
     div.dataset.id = task.id;
     div.innerHTML = taskItem;
-    fragment.append(div);
+    fragment.prepend(div);
   });
   _tasksContainer.innerHTML = "";
   _tasksContainer.append(fragment);
