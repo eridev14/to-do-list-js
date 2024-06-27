@@ -217,20 +217,19 @@ h2 {
     padding: 0 1rem;
     gap: .5rem;
     font-size: 1rem;
+    transition: all .5s;
 }
-
-.task:nth-last-child(1) {
+/* 
+.task.animate {
     animation: taskAmin .5s ease-in-out backwards;
-}
+} */
 
 @keyframes taskAmin {
     from {
-        opacity: 0;
         transform: translateY(-20px);
     }
 
     to {
-        opacity: 1;
         transform: translateY(0);
     }
 }
