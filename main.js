@@ -40,8 +40,14 @@ if (_task) {
 const _taskAdd = document.querySelector(".add-task__inp");
 const _tasksContainer = document.querySelector(".tasks");
 
-_taskAdd.addEventListener("keydown", (e) => {
-  console.log(e.target.value);
+_taskAdd.addEventListener("keyup", (e) => {
+  let value = e.target.value;
+
+  if (!value) {
+    console.log("el texto no debe estar vacio");
+    return;
+  }
+
   if (e.key === "Enter") {
     tasksArray = [
       ...tasksArray,
@@ -51,27 +57,31 @@ _taskAdd.addEventListener("keydown", (e) => {
     lastID = getLastId();
     lastID++;
     _taskAdd.value = "";
-    console.log(tasksArray);
   }
 });
 
+
 _tasksContainer.addEventListener("click", (e) => {
   let taskClick = e.target;
-  if (!taskClick.closest(".task")) {
+  let taskTarget = taskClick.closest(".task");
+  if (!taskTarget) {
     return;
   }
 
   if (taskClick.closest(".task__btn--delete")) {
-    console.log("eliminado");
+    let idTask = +taskTarget.dataset.id;
+    console.log(idTask);
+    let newArray = tasksArray.filter((taskValue) => taskValue.id !== idTask);
+    console.log(newArray);
+    tasksArray = [...newArray];
+    renderTask();
     return;
   }
 
   if (taskClick.closest(".task__btn--edit")) {
-    console.log("editado");
     return;
   }
 
-  let taskTarget = taskClick.closest(".task");
   if (taskTarget) {
     taskTarget.classList.toggle("active");
   }
@@ -100,7 +110,8 @@ function renderTask() {
         </button>
     `;
     let div = document.createElement("div");
-    div.classList.add("task");
+    div.classList.add("task", "animate");
+    div.dataset.id = task.id;
     div.innerHTML = taskItem;
     fragment.append(div);
   });
