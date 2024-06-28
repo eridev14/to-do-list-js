@@ -22,6 +22,7 @@ body {
 }
 
 #app {
+    position: relative;
     width: 100%;
 }
 
@@ -219,6 +220,7 @@ h2 {
     font-size: 1rem;
     transition: all .5s;
 }
+
 /* 
 .task.animate {
     animation: taskAmin .5s ease-in-out backwards;
@@ -252,11 +254,6 @@ h2 {
     background-color: #F7C667;
 }
 
-.task.active .task__check {
-    background-color: #F7C667;
-}
-
-
 .task__text {
     flex: 1;
     overflow: hidden;
@@ -287,4 +284,102 @@ h2 {
 
 .task__btn--delete:hover {
     color: #ff4e4ed7;
+}
+
+/*Modal components*/
+
+.modal {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    background: rgba(17, 21, 241, 0);
+    color: black;
+    animation: modalAnimate .5s backwards;
+}
+
+@keyframes modalAnimate {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal__edit {
+    position: relative;
+    width: 200px;
+    border: 1px solid;
+    border-radius: var(--border);
+    padding: 1rem;
+    /* backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); */
+    background: #f0f0f0;
+}
+
+.modal__edit-input {
+    width: 100%;
+    height: 30px;
+    padding: 5px;
+    margin: 10px 0;
+    color: rgb(8, 8, 8);
+    background: none;
+    border: none;
+    outline: none;
+    border: 1px solid;
+    border-radius: var(--border);
+    background: transparent;
+}
+
+.modal__edit-btn {
+    position: relative;
+    left: 17px;
+    width: 70px;
+    border-radius: var(--border);
+    border: 1px solid;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.modal__edit-btn--cancel {
+    background: #f34526;
+}
+
+.modal__edit-btn--save {
+    background: #2690f3;
+}
+
+.modal__edit-delete {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: var(--border);
+    cursor: pointer;
+    background: #F7C667;
+    font-weight: 600;
+    color: #141214b6;
+}
+
+.modal__edit-delete::after {
+    content: "x";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
