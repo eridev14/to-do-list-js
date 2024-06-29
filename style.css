@@ -10,6 +10,8 @@
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -38,32 +40,36 @@ h2 {
 /*BLOQUES LAYOUT*/
 .container {
     width: 100%;
-    height: calc(100vh);
+    min-height: 110vh;
     /* padding: 2rem; */
     display: flex;
 }
 
 .aside {
     background-color: var(--gb-color);
-    border-radius: var(--border);
     padding: 2rem 1.5rem;
 }
 
 .aside--left {
+    position: sticky;
+    top: 0;
     width: 15%;
+    height: 100vh;
     overflow-y: auto;
 }
 
 .aside--rigth {
+    position: sticky;
+    top: 0;
     width: 30%;
+    height: 100vh;
 }
 
 .main {
-    flex: 1;
-    /* background-color: var(--gb-color); */
-    border-radius: var(--border);
+    width: 55%;
     font-size: 2rem;
-    margin: 2rem 4rem;
+    /* background: #fff; */
+    padding: 2rem 4rem;
 }
 
 /*------------------------------------*/
@@ -211,7 +217,7 @@ h2 {
 .task {
     width: 100%;
     background-color: var(--gb-color);
-    height: 50px;
+    min-height: 50px;
     border-radius: var(--border);
     display: flex;
     align-items: center;
@@ -256,7 +262,13 @@ h2 {
 
 .task__text {
     flex: 1;
-    overflow: hidden;
+    /* overflow: hidden; */
+    font-size: .8rem;
+    word-break: break-all;
+}
+
+.task__text.active {
+    text-decoration: line-through;
 }
 
 .task__btn {
