@@ -1,27 +1,16 @@
-import { listMonth, listArray } from "./variables";
+// import { listMonth, listArray } from "./variables";
+import { renderTask, getLastId, dateNameForm } from "./functions";
 
 let lastID = 0;
 let tasksArray = [];
 let idEditTarget = 0;
 let textEditTarget = "";
-// date
+
 let dateMain = document.querySelector(".header__date");
-
-function dateNameForm() {
-  let date = new Date();
-  let month = date.getMonth();
-  let dat = date.getDate();
-  if (dat > 9) {
-    dateMain.textContent = `${listMonth[month]} ${dat}`;
-  } else {
-    dateMain.textContent = `${listMonth[month]} 0${dat}`;
-  }
-}
-
-dateNameForm();
-
 const _taskAdd = document.querySelector(".add-task__inp");
 const _tasksContainer = document.querySelector(".tasks");
+
+dateNameForm(dateMain);
 
 _taskAdd.addEventListener("keyup", (e) => {
   let value = e.target.value;
@@ -37,8 +26,8 @@ _taskAdd.addEventListener("keyup", (e) => {
       { id: lastID, text: e.target.value, check: false },
     ];
     tasksArray = [...newTasksArray];
-    renderTask();
-    lastID = getLastId();
+    renderTask(tasksArray, _tasksContainer);
+    lastID = getLastId(tasksArray);
     lastID++;
     _taskAdd.value = "";
   }
@@ -59,7 +48,7 @@ _tasksContainer.addEventListener("click", (e) => {
     let idTask = +taskTarget.dataset.id;
     let newArray = tasksArray.filter((taskValue) => taskValue.id !== idTask);
     tasksArray = [...newArray];
-    renderTask();
+    renderTask(tasksArray, _tasksContainer);
     return;
   }
 
@@ -71,22 +60,24 @@ _tasksContainer.addEventListener("click", (e) => {
     return;
   }
 
-  console.log(taskClick.classList.contains("task__check"));
-  if (taskTarget || taskClick.classList.contains("task__check")) {
+  if (taskTarget) {
     let _check_inp = taskTarget.querySelector(".task__check");
-    let check = _check_inp.checked;
-    _check_inp.checked = !check;
     let checkId = +taskTarget.dataset.id;
+    let textCheck = taskTarget.querySelector(".task__text");
+    textCheck.style.text;
+    _check_inp.checked = !_check_inp.checked;
+
     let newTasksArray = tasksArray.map((task) => {
       if (task.id === checkId) {
         return {
           ...task,
-          check: !check,
+          check: _check_inp.checked,
         };
       }
       return task;
     });
     tasksArray = [...newTasksArray];
+    renderTask(tasksArray, _tasksContainer);
   }
 });
 
@@ -108,41 +99,8 @@ _modal.addEventListener("click", (e) => {
         }
         return task;
       });
-      renderTask();
+      renderTask(tasksArray, _tasksContainer);
       _modal.classList.remove("active");
     }
   }
 });
-
-function getLastId() {
-  return tasksArray.length > 0 ? tasksArray.slice(-1)[0].id : 0;
-}
-
-function renderTask() {
-  let fragment = document.createDocumentFragment();
-  tasksArray.forEach((task) => {
-    let taskItem = `
-      <input
-        type="checkbox"
-        name="check"
-        id="check"
-        class="task__check"
-        ${task.check ? "checked" : ""}
-      />
-      <span class="task__text">${task.text}</span>
-      <button class="task__btn task__btn--edit">
-          <ion-icon name="create-outline"></ion-icon>
-      </button>
-      <button class="task__btn task__btn--delete">
-          <ion-icon name="trash-outline"></ion-icon>
-      </button>
-    `;
-    let div = document.createElement("div");
-    div.classList.add("task", "animate");
-    div.dataset.id = task.id;
-    div.innerHTML = taskItem;
-    fragment.prepend(div);
-  });
-  _tasksContainer.innerHTML = "";
-  _tasksContainer.append(fragment);
-}
